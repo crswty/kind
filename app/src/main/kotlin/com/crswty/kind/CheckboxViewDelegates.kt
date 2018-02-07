@@ -2,7 +2,10 @@ package com.crswty.kind
 
 import android.app.Activity
 import android.widget.CheckBox
+import io.reactivex.Observable
 import kotlin.reflect.KProperty
+
+
 
 class CheckboxValueDelegate(val id: Int) {
     operator fun getValue(thisRef: Activity, prop: KProperty<*>): Boolean {
@@ -16,3 +19,18 @@ class CheckboxValueDelegate(val id: Int) {
 
 val ViewDelegate<CheckBox>.value
     get() = CheckboxValueDelegate(id)
+
+
+class CheckboxObservableDelegate(val id: Int) {
+    operator fun getValue(thisRef: Activity, prop: KProperty<*>): Observable<Boolean> {
+
+        return Observable.create { emitter ->
+            thisRef.findViewById<CheckBox>(id).setOnCheckedChangeListener{ _, newValue: Boolean ->
+                emitter.onNext(newValue)
+            }
+        }
+    }
+}
+
+val ViewDelegate<CheckBox>.observable : CheckboxObservableDelegate
+    get() = CheckboxObservableDelegate(id)
