@@ -1,36 +1,25 @@
 package com.crswty.kind
 
-import android.app.Activity
 import android.widget.CheckBox
-import io.reactivex.Observable
 import kotlin.reflect.KProperty
 
 
+class CheckboxValueDelegate(id: Int): ReadWritePropertyAndroidDelegate<CheckBox, Boolean>(id) {
 
-class CheckboxValueDelegate(val id: Int) {
-    operator fun getValue(thisRef: Activity, prop: KProperty<*>): Boolean {
-        return thisRef.findViewById<CheckBox>(id).isChecked
+    override fun getFromView(view: CheckBox, prop: KProperty<*>) = view.isChecked
+
+    override fun setOnView(view: CheckBox, prop: KProperty<*>, value: Boolean) {
+        view.isChecked = value
     }
 
-    operator fun setValue(thisRef: Activity, prop: KProperty<*>, value: Boolean) {
-        thisRef.findViewById<CheckBox>(id).isChecked = value
+    val observable = ObservableDelegate<CheckBox, Boolean>(id) { view, emitter ->
+        view.setOnCheckedChangeListener{ _, newValue: Boolean ->
+            emitter.onNext(newValue)
+        }
     }
-
-    val observable = CheckboxObservableDelegate(id)
 }
 
 val ViewDelegate<CheckBox>.value
     get() = CheckboxValueDelegate(id)
 
-
-class CheckboxObservableDelegate(val id: Int) {
-    operator fun getValue(thisRef: Activity, prop: KProperty<*>): Observable<Boolean> {
-
-        return Observable.create { emitter ->
-            thisRef.findViewById<CheckBox>(id).setOnCheckedChangeListener{ _, newValue: Boolean ->
-                emitter.onNext(newValue)
-            }
-        }
-    }
-}
 
