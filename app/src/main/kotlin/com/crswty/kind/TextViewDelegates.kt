@@ -15,6 +15,8 @@ class TextViewValueDelegate(val id: Int) {
     operator fun setValue(thisRef: Activity, prop: KProperty<*>, value: String) {
         thisRef.findViewById<TextView>(id).text = value
     }
+
+    val observable = TextViewObservableDelegate(id)
 }
 
 val ViewDelegate<TextView>.value
@@ -36,6 +38,3 @@ class TextViewObservableDelegate(val id: Int) {
         }
     }
 }
-
-val ViewDelegate<TextView>.observable : TextViewObservableDelegate
-    get() = TextViewObservableDelegate(id)

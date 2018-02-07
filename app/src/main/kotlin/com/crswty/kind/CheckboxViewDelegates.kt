@@ -15,6 +15,8 @@ class CheckboxValueDelegate(val id: Int) {
     operator fun setValue(thisRef: Activity, prop: KProperty<*>, value: Boolean) {
         thisRef.findViewById<CheckBox>(id).isChecked = value
     }
+
+    val observable = CheckboxObservableDelegate(id)
 }
 
 val ViewDelegate<CheckBox>.value
@@ -32,5 +34,3 @@ class CheckboxObservableDelegate(val id: Int) {
     }
 }
 
-val ViewDelegate<CheckBox>.observable : CheckboxObservableDelegate
-    get() = CheckboxObservableDelegate(id)

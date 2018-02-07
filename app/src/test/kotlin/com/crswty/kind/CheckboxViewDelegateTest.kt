@@ -38,7 +38,6 @@ class CheckboxViewDelegateTest {
     @Test
     fun shouldSendEventsToObservable() {
         val activity = Robolectric.setupActivity(CheckboxViewActivity::class.java)
-
         val checkBox = activity.findViewById<CheckBox>(R.id.checkbox_view)
 
         val events = mutableListOf<Boolean>()
