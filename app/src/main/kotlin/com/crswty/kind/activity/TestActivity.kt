@@ -7,7 +7,7 @@ import android.widget.TextView
 import com.crswty.kind.bind
 import com.crswty.kind.value
 
-class MixedViewActivity : AppCompatActivity() {
+class TestActivity : AppCompatActivity() {
 
     var checkboxValue by bind<CheckBox>(R.id.checkbox_view).value
     var textViewValue by bind<TextView>(R.id.text_view).value
