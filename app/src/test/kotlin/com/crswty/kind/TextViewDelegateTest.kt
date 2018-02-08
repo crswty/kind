@@ -18,15 +18,7 @@ class TextViewDelegateTest {
 
 
     @Test
-    fun shouldBindToTextView() {
-        val activity = Robolectric.setupActivity(TextViewActivity::class.java)
-        val textView = activity.findViewById<TextView>(R.id.text_view)
-
-        assertThat(activity.textView, equalTo(textView))
-    }
-
-    @Test
-    fun shouldBindToTextViewValue() {
+    fun shouldBindValueToText() {
         val activity = Robolectric.setupActivity(TextViewActivity::class.java)
         val textView = activity.findViewById<TextView>(R.id.text_view)
 
@@ -38,7 +30,7 @@ class TextViewDelegateTest {
     }
 
     @Test
-    fun shouldSendEventsToObservable() {
+    fun shouldPushTextChanceEventsToObservable() {
         val activity = Robolectric.setupActivity(TextViewActivity::class.java)
         val textView = activity.findViewById<TextView>(R.id.text_view)
 

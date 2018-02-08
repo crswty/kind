@@ -14,17 +14,8 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class CheckboxViewDelegateTest {
 
-
     @Test
-    fun shouldBindToCheckboxView() {
-        val activity = Robolectric.setupActivity(CheckboxViewActivity::class.java)
-        val checkBox = activity.findViewById<CheckBox>(R.id.checkbox_view)
-
-        assertThat(activity.checkbox, equalTo(checkBox))
-    }
-
-    @Test
-    fun shouldBindToCheckboxViewValue() {
+    fun shouldBindValueToIsChecked() {
         val activity = Robolectric.setupActivity(CheckboxViewActivity::class.java)
         val checkBox = activity.findViewById<CheckBox>(R.id.checkbox_view)
 
@@ -36,7 +27,7 @@ class CheckboxViewDelegateTest {
     }
 
     @Test
-    fun shouldSendEventsToObservable() {
+    fun shouldPushCheckChangeEventsToObservable() {
         val activity = Robolectric.setupActivity(CheckboxViewActivity::class.java)
         val checkBox = activity.findViewById<CheckBox>(R.id.checkbox_view)
 
