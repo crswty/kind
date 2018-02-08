@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.crswty.kind.integration.fragment.TestFragment">
+
+    <CheckBox
+        android:id="@+id/checkbox_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="134dp" />
+
+
+    <com.crswty.kind.integration.view.TestView
+        android:id="@+id/test_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="134dp">
+
+        <CheckBox
+            android:id="@+id/nested_checkbox_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="102dp"
+            tools:layout_editor_absoluteY="134dp" />
+
+    </com.crswty.kind.integration.view.TestView>
+
+</FrameLayout>

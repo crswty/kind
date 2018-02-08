@@ -1,1 +1,3 @@
-include ':app'
+include ':kind', ':kind-integration-test'
+
+rootProject.name = "kind-parent"
