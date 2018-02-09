@@ -4,6 +4,9 @@ import android.app.Activity
 import android.view.View
 import kotlin.reflect.KProperty
 
+interface ViewProvider {
+    fun <T : View> findViewById(id: Int): T
+}
 
 abstract class ReadPropertyAndroidDelegate<in V : View, out R>(val id: Int) {
 
@@ -20,6 +23,10 @@ abstract class ReadPropertyAndroidDelegate<in V : View, out R>(val id: Int) {
     }
 
     operator fun getValue(thisRef: View, prop: KProperty<*>): R {
+        return getFromView(thisRef.findViewById(id), prop)
+    }
+
+    operator fun getValue(thisRef: ViewProvider, prop: KProperty<*>): R {
         return getFromView(thisRef.findViewById(id), prop)
     }
 
@@ -41,8 +48,11 @@ abstract class ReadWritePropertyAndroidDelegate<in V : View, R>(id: Int)
         setValue(thisRef.view!!, prop, value)
     }
 
-
     operator fun setValue(thisRef: View, prop: KProperty<*>, value: R) {
+        setOnView(thisRef.findViewById(id), prop, value)
+    }
+
+    operator fun setValue(thisRef: ViewProvider, prop: KProperty<*>, value: R) {
         setOnView(thisRef.findViewById(id), prop, value)
     }
 
