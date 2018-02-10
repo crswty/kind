@@ -1,10 +1,8 @@
 package com.crswty.kind.integration
 
-import android.widget.CheckBox
+import android.view.View
 import com.crswty.kind.bind
-import com.crswty.kind.integration.activity.R
-import com.crswty.kind.integration.activity.StandardWidgetsActivity
-import com.crswty.kind.integration.util.TestViewProvider
+import com.crswty.kind.integration.util.TestActivity
 import org.hamcrest.Matchers.equalTo
 import org.hamcrest.Matchers.hasSize
 import org.junit.Assert.assertThat
@@ -13,28 +11,32 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 
+
 @RunWith(RobolectricTestRunner::class)
 class ViewDelegateTest {
 
+    open class ViewActivity: TestActivity<View>( { View(it) })
+
     @Test
     fun shouldPushClickEventsToObservable() {
-        val activity = Robolectric.setupActivity(StandardWidgetsActivity::class.java)
 
-        val provider = object : TestViewProvider(activity) {
-            val clickObservable by bind<CheckBox>(R.id.checkbox_view).clickObservable
+        class ClickObservableActivity: ViewActivity() {
+            val clickObservable by bind<View>(viewId).clickObservable
         }
-        val textView = activity.findViewById<CheckBox>(R.id.checkbox_view)
 
-        val events = mutableListOf<CheckBox>()
-        provider.clickObservable
+        val activity = Robolectric.setupActivity(ClickObservableActivity::class.java)
+
+        val events = mutableListOf<View>()
+        activity.clickObservable
                 .subscribe({ events.add(it) })
 
-        textView.performClick()
-        textView.performClick()
+        val view = activity.view
+        view.performClick()
+        view.performClick()
 
         assertThat(events, hasSize(2))
-        assertThat(events[0], equalTo(textView))
-        assertThat(events[1], equalTo(textView))
+        assertThat(events[0], equalTo(view))
+        assertThat(events[1], equalTo(view))
     }
 }
 
