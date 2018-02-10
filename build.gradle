@@ -16,6 +16,22 @@ allprojects {
         google()
         jcenter()
     }
+
+    if (!project.hasProperty("version")) {
+        ext.version = "0.0.0"
+    }
+
+    if (!project.hasProperty("bintrayUser")) {
+        ext.bintrayUser = ""
+    }
+
+    if (!project.hasProperty("bintrayKey")) {
+        ext.bintrayKey = ""
+    }
+
+    project.version = "${version}"
+    project.group = "com.crswty.kind"
+
 }
 
 task clean(type: Delete) {
