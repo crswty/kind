@@ -8,7 +8,7 @@ import android.widget.CheckBox
 import com.crswty.kind.bind
 import com.crswty.kind.integration.activity.R
 
-class CompatabilityFragment : android.support.v4.app.Fragment() {
+class CompatibilityFragment : android.support.v4.app.Fragment() {
 
     val checkBox by bind<CheckBox>(R.id.checkbox_view)
 

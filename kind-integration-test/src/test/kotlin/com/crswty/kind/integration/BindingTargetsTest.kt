@@ -8,7 +8,7 @@ import com.crswty.kind.bind
 import com.crswty.kind.integration.activity.CustomWidgetsActivity
 import com.crswty.kind.integration.activity.R
 import com.crswty.kind.integration.activity.StandardWidgetsActivity
-import com.crswty.kind.integration.fragment.CompatabilityFragment
+import com.crswty.kind.integration.fragment.CompatibilityFragment
 import com.crswty.kind.integration.fragment.StandardFragment
 import com.crswty.kind.integration.view.CustomView
 import org.hamcrest.Matchers.equalTo
@@ -39,8 +39,8 @@ class BindingTargetsTest {
     }
 
     @Test
-    fun shouldBindToCompatabilityFragment() {
-        val fragment = CompatabilityFragment()
+    fun shouldBindToCompatibilityFragment() {
+        val fragment = CompatibilityFragment()
         SupportFragmentTestUtil.startFragment(fragment)
 
         val checkBox = fragment.view!!.findViewById<CheckBox>(R.id.checkbox_view)
