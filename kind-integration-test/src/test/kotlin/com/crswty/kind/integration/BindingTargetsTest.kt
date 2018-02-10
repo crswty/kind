@@ -6,11 +6,12 @@ import android.widget.CheckBox
 import android.widget.TextView
 import com.crswty.kind.ViewProvider
 import com.crswty.kind.bind
-import com.crswty.kind.integration.activity.TestActivity
+import com.crswty.kind.integration.activity.CustomWidgetsActivity
 import com.crswty.kind.integration.activity.R
-import com.crswty.kind.integration.fragment.CheckboxCompatFragment
-import com.crswty.kind.integration.fragment.TestFragment
-import com.crswty.kind.integration.view.TestView
+import com.crswty.kind.integration.activity.StandardWidgetsActivity
+import com.crswty.kind.integration.fragment.CompatabilityFragment
+import com.crswty.kind.integration.fragment.StandardFragment
+import com.crswty.kind.integration.view.CustomView
 import com.crswty.kind.value
 import org.hamcrest.Matchers.equalTo
 import org.junit.Assert.assertThat
@@ -25,7 +26,7 @@ class BindingTargetsTest {
 
     @Test
     fun shouldBindToActivity() {
-        val activity = Robolectric.setupActivity(TestActivity::class.java)
+        val activity = Robolectric.setupActivity(StandardWidgetsActivity::class.java)
         val checkBox = activity.findViewById<CheckBox>(R.id.checkbox_view)
 
         checkBox.isChecked = true
@@ -37,7 +38,7 @@ class BindingTargetsTest {
 
     @Test
     fun shouldBindToFragment() {
-        val fragment = Robolectric.buildFragment(TestFragment::class.java).create(Bundle()).get()
+        val fragment = Robolectric.buildFragment(StandardFragment::class.java).create(Bundle()).get()
         val checkBox = fragment.view.findViewById<CheckBox>(R.id.checkbox_view)
 
         checkBox.isChecked = true
@@ -52,7 +53,7 @@ class BindingTargetsTest {
 
     @Test
     fun shouldBindToCompatFragment() {
-        val fragment = CheckboxCompatFragment()
+        val fragment = CompatabilityFragment()
         SupportFragmentTestUtil.startFragment(fragment)
 
         val checkBox = fragment.view!!.findViewById<CheckBox>(R.id.checkbox_view)
@@ -70,47 +71,46 @@ class BindingTargetsTest {
 
     @Test
     fun shouldBindToView() {
-        val fragment = Robolectric.buildFragment(TestFragment::class.java).create(Bundle()).get()
-        val testView = fragment.view.findViewById<TestView>(R.id.test_view)
+        val activity = Robolectric.setupActivity(CustomWidgetsActivity::class.java)
+        val customView = activity.findViewById<CustomView>(R.id.test_view)
 
-        val nestedCheckBox = testView.findViewById<CheckBox>(R.id.nested_checkbox_view)
-
-        nestedCheckBox.isChecked = true
-        testView.nestedCheckboxValue
+        val nestedCheckBox = customView.findViewById<CheckBox>(R.id.nested_checkbox_view)
 
         nestedCheckBox.isChecked = true
-        assertThat(testView.nestedCheckboxValue, equalTo(true))
+        customView.nestedCheckboxValue
 
-        testView.nestedCheckboxValue = false
+        nestedCheckBox.isChecked = true
+        assertThat(customView.nestedCheckboxValue, equalTo(true))
+
+        customView.nestedCheckboxValue = false
         assertThat(nestedCheckBox.isChecked, equalTo(false))
     }
 
     @Test
     fun shouldBindToViewProvider() {
 
-        val fragment = Robolectric.buildFragment(TestFragment::class.java).create(Bundle()).get()
+        val fragment = Robolectric.buildFragment(StandardFragment::class.java).create(Bundle()).get()
 
-        class ViewHolder : ViewProvider {
-            var nestedCheckboxValue by bind<CheckBox>(R.id.nested_checkbox_view).value
+        val viewProvider = object : ViewProvider {
+            var checkboxValue by bind<CheckBox>(R.id.checkbox_view).value
             override fun <T : View> findViewById(id: Int) = fragment.view.findViewById<T>(id)
         }
 
-        val nestedCheckBox = fragment.view.findViewById<CheckBox>(R.id.nested_checkbox_view)
-        val viewHolder = ViewHolder()
+        val nestedCheckBox = fragment.view.findViewById<CheckBox>(R.id.checkbox_view)
 
         nestedCheckBox.isChecked = true
-        viewHolder.nestedCheckboxValue
+        viewProvider.checkboxValue
 
         nestedCheckBox.isChecked = true
-        assertThat(viewHolder.nestedCheckboxValue, equalTo(true))
+        assertThat(viewProvider.checkboxValue, equalTo(true))
 
-        viewHolder.nestedCheckboxValue = false
+        viewProvider.checkboxValue = false
         assertThat(nestedCheckBox.isChecked, equalTo(false))
     }
 
     @Test
     fun shouldBindMultipleComponents() {
-        val activity = Robolectric.setupActivity(TestActivity::class.java)
+        val activity = Robolectric.setupActivity(StandardWidgetsActivity::class.java)
 
         val textView = activity.findViewById<TextView>(R.id.text_view)
         textView.text = "Expected value"

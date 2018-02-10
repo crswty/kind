@@ -1,8 +1,11 @@
 package com.crswty.kind.integration
 
 import android.widget.CheckBox
-import com.crswty.kind.integration.activity.CheckboxViewActivity
+import com.crswty.kind.bind
 import com.crswty.kind.integration.activity.R
+import com.crswty.kind.integration.activity.StandardWidgetsActivity
+import com.crswty.kind.integration.util.TestViewProvider
+import com.crswty.kind.value
 import org.hamcrest.Matchers.equalTo
 import org.hamcrest.Matchers.hasSize
 import org.junit.Assert.assertThat
@@ -16,23 +19,31 @@ class CheckboxViewDelegateTest {
 
     @Test
     fun shouldBindValueToIsChecked() {
-        val activity = Robolectric.setupActivity(CheckboxViewActivity::class.java)
+        val activity = Robolectric.setupActivity(StandardWidgetsActivity::class.java)
         val checkBox = activity.findViewById<CheckBox>(R.id.checkbox_view)
 
-        checkBox.isChecked = true
-        assertThat(activity.checkboxValue, equalTo(true))
+        val provider = object : TestViewProvider(activity) {
+            var checkboxValue by bind<CheckBox>(R.id.checkbox_view).value
+        }
 
-        activity.checkboxValue = false
+        checkBox.isChecked = true
+        assertThat(provider.checkboxValue, equalTo(true))
+
+        provider.checkboxValue = false
         assertThat(checkBox.isChecked, equalTo(false))
     }
 
     @Test
     fun shouldPushCheckChangeEventsToObservable() {
-        val activity = Robolectric.setupActivity(CheckboxViewActivity::class.java)
+        val activity = Robolectric.setupActivity(StandardWidgetsActivity::class.java)
         val checkBox = activity.findViewById<CheckBox>(R.id.checkbox_view)
 
+        val provider = object : TestViewProvider(activity) {
+            val checkboxObservable by bind<CheckBox>(R.id.checkbox_view).value.observable
+        }
+
         val events = mutableListOf<Boolean>()
-        activity.checkboxObservable
+        provider.checkboxObservable
                 .subscribe({ events.add(it) })
 
         checkBox.isChecked = true

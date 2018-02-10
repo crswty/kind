@@ -7,6 +7,13 @@ import kotlin.reflect.KProperty
 
 class ViewDelegate<V : View>(id: Int): ReadPropertyAndroidDelegate<V, V>(id) {
     override fun getFromView(view: V, prop: KProperty<*>) = view
+
+    val clickObservable = ObservableDelegate<View, Unit>(id) { view, emitter ->
+        view.setOnClickListener {
+            emitter.onNext(Unit)
+        }
+    }
+
 }
 
 fun <T : View> bind(id: Int): ViewDelegate<T> {
