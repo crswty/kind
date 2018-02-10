@@ -2,7 +2,6 @@ package com.crswty.kind.integration
 
 import android.widget.CheckBox
 import com.crswty.kind.bind
-import com.crswty.kind.integration.activity.R
 import com.crswty.kind.integration.util.TestActivity
 import com.crswty.kind.value
 import org.hamcrest.Matchers.equalTo
@@ -16,12 +15,12 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class CheckboxViewDelegateTest {
 
-    open class CheckboxActivity: TestActivity<CheckBox>({ CheckBox(it) })
+    open class CheckboxActivity : TestActivity<CheckBox>({ CheckBox(it) })
 
     @Test
     fun shouldBindValueToIsChecked() {
 
-        class CheckboxActivityValue: CheckboxActivity() {
+        class CheckboxActivityValue : CheckboxActivity() {
             var checkboxValue by bind<CheckBox>(viewId).value
         }
 
@@ -37,7 +36,7 @@ class CheckboxViewDelegateTest {
 
     @Test
     fun shouldPushCheckChangeEventsToObservable() {
-        class CheckboxActivityValue: CheckboxActivity() {
+        class CheckboxActivityValue : CheckboxActivity() {
             val checkboxObservable by bind<CheckBox>(viewId).value.observable
         }
 

@@ -15,12 +15,12 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class ViewDelegateTest {
 
-    open class ViewActivity: TestActivity<View>( { View(it) })
+    open class ViewActivity : TestActivity<View>({ View(it) })
 
     @Test
     fun shouldPushClickEventsToObservable() {
 
-        class ClickObservableActivity: ViewActivity() {
+        class ClickObservableActivity : ViewActivity() {
             val clickObservable by bind<View>(viewId).clickObservable
         }
 
@@ -38,5 +38,6 @@ class ViewDelegateTest {
         assertThat(events[0], equalTo(view))
         assertThat(events[1], equalTo(view))
     }
+
 }
 

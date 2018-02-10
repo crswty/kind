@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 
 
-open class TestActivity<T: View>(private val create: (Activity) -> T) : Activity() {
+open class TestActivity<T : View>(private val create: (Activity) -> T) : Activity() {
     var viewId = 0
     lateinit var view: T
 

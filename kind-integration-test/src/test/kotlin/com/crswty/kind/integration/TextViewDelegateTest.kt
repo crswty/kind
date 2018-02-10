@@ -2,7 +2,6 @@ package com.crswty.kind.integration
 
 import android.widget.TextView
 import com.crswty.kind.bind
-import com.crswty.kind.integration.activity.R
 import com.crswty.kind.integration.util.TestActivity
 import com.crswty.kind.value
 import org.hamcrest.Matchers.equalTo
@@ -17,14 +16,15 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class TextViewDelegateTest {
 
-    open class TextViewActivity: TestActivity<TextView>({ TextView(it) })
+    open class TextViewActivity : TestActivity<TextView>({ TextView(it) })
 
     @Test
     fun shouldBindValueToText() {
 
-        class TextViewValue: TextViewActivity() {
+        class TextViewValue : TextViewActivity() {
             var textViewValue by bind<TextView>(viewId).value
         }
+
         val activity = Robolectric.setupActivity(TextViewValue::class.java)
         val textView = activity.view
 
@@ -37,9 +37,10 @@ class TextViewDelegateTest {
 
     @Test
     fun shouldPushTextChanceEventsToObservable() {
-        class TextViewValue: TextViewActivity() {
+        class TextViewValue : TextViewActivity() {
             val textViewObservable by bind<TextView>(viewId).value.observable
         }
+
         val activity = Robolectric.setupActivity(TextViewValue::class.java)
         val textView = activity.view
 
