@@ -27,7 +27,7 @@ class MyActivity : AppCompatActivity() {
 Available through JCenter and Maven Central
 ```groovy
 dependencies {
-    compile 'com.crswty.kind:kind:0.1.1'
+    compile 'com.crswty.kind:kind:0.2.0'
 }
 ```
 
