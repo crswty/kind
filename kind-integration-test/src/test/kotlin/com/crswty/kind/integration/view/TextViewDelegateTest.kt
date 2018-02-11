@@ -1,5 +1,7 @@
 package com.crswty.kind.integration.view
 
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import com.crswty.kind.bind
 import com.crswty.kind.integration.util.TestActivity
@@ -16,11 +18,10 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class TextViewDelegateTest {
 
-    open class TextViewActivity : TestActivity<TextView>({ TextView(it) })
 
     @Test
-    fun shouldBindValueToText() {
-
+    fun textView_shouldBindValueToText() {
+        open class TextViewActivity : TestActivity<TextView>({ TextView(it) })
         class TextViewValue : TextViewActivity() {
             var textViewValue by bind<TextView>(viewId).value
         }
@@ -36,7 +37,25 @@ class TextViewDelegateTest {
     }
 
     @Test
-    fun shouldPushTextChanceEventsToObservable() {
+    fun editText_shouldBindValueToText() {
+
+        class EditTextValue : TestActivity<EditText>({ EditText(it) }) {
+            var editTextValue by bind<EditText>(viewId).value
+        }
+
+        val activity = Robolectric.setupActivity(EditTextValue::class.java)
+        val textView = activity.view
+
+        textView.setText("Expected value")
+        assertThat(activity.editTextValue, equalTo("Expected value"))
+
+        activity.editTextValue = "Updated value"
+        assertThat(textView.text.toString(), equalTo("Updated value"))
+    }
+
+    @Test
+    fun shouldPushTextChangeEventsToObservable() {
+        open class TextViewActivity : TestActivity<TextView>({ TextView(it) })
         class TextViewValue : TextViewActivity() {
             val textViewObservable by bind<TextView>(viewId).value.observable
         }

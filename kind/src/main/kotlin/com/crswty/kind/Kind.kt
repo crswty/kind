@@ -44,7 +44,7 @@ fun <T : View> bind(id: Int): ViewDelegate<T> {
 /**
  * Binds the property to [TextView.getText] and [TextView.setText]
  */
-val ViewDelegate<TextView>.value
+val ViewDelegate<out TextView>.value
     get() = TextViewValueDelegate(id)
 
 /**
