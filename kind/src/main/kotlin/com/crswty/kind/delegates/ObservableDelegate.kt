@@ -5,6 +5,9 @@ import io.reactivex.Emitter
 import io.reactivex.Observable
 import kotlin.reflect.KProperty
 
+/**
+ * Wrapper to simplify exposing [Observable]s as properties
+ */
 class ObservableDelegate<in V: View, T>(id: Int, private val callback: (V, Emitter<T>) -> Unit)
     : ReadPropertyAndroidDelegate<V, Observable<T>>(id) {
 

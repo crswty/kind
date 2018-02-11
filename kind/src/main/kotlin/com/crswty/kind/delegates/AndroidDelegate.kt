@@ -4,10 +4,17 @@ import android.app.Activity
 import android.view.View
 import kotlin.reflect.KProperty
 
+/**
+ * Implementors are able to find views and can therefore be used with Kind
+ */
 interface ViewProvider {
     fun <T : View> findViewById(id: Int): T
 }
 
+/**
+ * Abstract Delegate that allows subclasses to be bound to an [Activity]/[Fragment]/[View]/[ViewProvider]
+ * * for immutable properties
+ */
 abstract class ReadPropertyAndroidDelegate<in V : View, out R>(val id: Int) {
 
     operator fun getValue(thisRef: Activity, prop: KProperty<*>): R {
@@ -33,6 +40,10 @@ abstract class ReadPropertyAndroidDelegate<in V : View, out R>(val id: Int) {
     abstract fun getFromView(view: V, prop: KProperty<*>): R
 }
 
+/**
+ * Abstract Delegate that allows subclasses to be bound to an [Activity]/[Fragment]/[View]/[ViewProvider]
+ * for mutable properties
+ */
 abstract class ReadWritePropertyAndroidDelegate<in V : View, R>(id: Int)
     : ReadPropertyAndroidDelegate<V, R>(id) {
 

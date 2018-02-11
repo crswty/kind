@@ -5,6 +5,10 @@ import android.text.TextWatcher
 import android.widget.TextView
 import kotlin.reflect.KProperty
 
+/**
+ * Binds the property to [TextView.getText] and [TextView.setText]
+ * @see com.crswty.kind.value
+ */
 class TextViewValueDelegate(id: Int): ReadWritePropertyAndroidDelegate<TextView, String>(id) {
 
     override fun getFromView(view: TextView, prop: KProperty<*>) = view.text.toString()
