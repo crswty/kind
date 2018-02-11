@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka-android'
 apply plugin: 'maven'
-apply plugin: 'signing'
 
 
 android {
@@ -68,9 +67,8 @@ artifacts {
 uploadArchives {
     repositories {
         mavenDeployer {
-//            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-            repository(url: "https://api.bintray.com/maven/crswty/crswty/kind") {
+            repository(url: "https://api.bintray.com/maven/crswty/maven/kind") {
                 authentication(userName: "${bintrayUser}", password: "${bintrayKey}")
             }
 
