@@ -33,9 +33,9 @@ dependencies {
 
 ## Binding to Views
 
-Binding to views is the simplest case, this style makes means you don't
-have to declare the checkbox as `lateinit` and then assign to it in 
-`onCreate` or `onCreateView` leaving you with a clean declarative style
+Binding to views is the simplest case, this style means you don't
+have to declare the view as `lateinit` and then assign to it in 
+`onCreate` or `onCreateView`, leaving you with a clean declarative style
 
 ```kotlin
 class MyActivity: Activity() {
@@ -47,7 +47,7 @@ class MyActivity: Activity() {
 
 Sometime you don't even need to interact with the views in your layout,
 it these cases, Kind makes it easy to to bind to the underlying values of
-those views. in this example you simple bind to a `Boolean` that represents
+those views. In this example you simple bind to a `Boolean` that represents
  if the check box is checked or not.
 
 
