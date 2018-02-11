@@ -10,7 +10,7 @@ Kind binds Kotlin properties to Android views and values.
 ```kotlin
 class MyActivity : AppCompatActivity() {
 
-    val textArea by bind<TextView(R.id.text_view)
+    val textArea by bind<TextView>(R.id.text_view)
     var checkBoxValue by bind<CheckBox>(R.id.checkbox_view).value
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class MyActivity : AppCompatActivity() {
 Available through JCenter and Maven Central
 ```groovy
 dependencies {
-    compile 'com.crswty.kind:kind:0.1.2'
+    compile 'com.crswty.kind:kind:0.1.1'
 }
 ```
 
