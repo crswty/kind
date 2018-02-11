@@ -3,7 +3,7 @@ package com.crswty.kind.integration
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
-import com.crswty.kind.ViewProvider
+import com.crswty.kind.delegates.ViewProvider
 import com.crswty.kind.bind
 import com.crswty.kind.integration.activity.CustomWidgetsActivity
 import com.crswty.kind.integration.activity.R

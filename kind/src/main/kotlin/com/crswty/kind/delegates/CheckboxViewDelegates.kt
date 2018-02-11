@@ -1,4 +1,4 @@
-package com.crswty.kind
+package com.crswty.kind.delegates
 
 import android.widget.CheckBox
 import kotlin.reflect.KProperty
@@ -18,8 +18,3 @@ class CheckboxValueDelegate(id: Int): ReadWritePropertyAndroidDelegate<CheckBox,
         }
     }
 }
-
-val ViewDelegate<CheckBox>.value
-    get() = CheckboxValueDelegate(id)
-
-

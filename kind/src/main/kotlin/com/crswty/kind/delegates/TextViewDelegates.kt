@@ -1,4 +1,4 @@
-package com.crswty.kind
+package com.crswty.kind.delegates
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -26,7 +26,4 @@ class TextViewValueDelegate(id: Int): ReadWritePropertyAndroidDelegate<TextView,
     }
 
 }
-
-val ViewDelegate<TextView>.value
-    get() = TextViewValueDelegate(id)
 
