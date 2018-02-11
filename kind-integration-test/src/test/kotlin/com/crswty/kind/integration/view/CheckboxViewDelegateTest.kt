@@ -1,4 +1,4 @@
-package com.crswty.kind.integration
+package com.crswty.kind.integration.view
 
 import android.widget.CheckBox
 import com.crswty.kind.bind

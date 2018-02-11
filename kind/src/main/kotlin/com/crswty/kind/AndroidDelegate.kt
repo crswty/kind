@@ -2,6 +2,7 @@ package com.crswty.kind
 
 import android.app.Activity
 import android.view.View
+import android.widget.RatingBar
 import kotlin.reflect.KProperty
 
 interface ViewProvider {
