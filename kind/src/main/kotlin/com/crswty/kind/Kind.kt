@@ -53,30 +53,16 @@ val ViewDelegate<TextView>.value
 val ViewDelegate<CheckBox>.value
     get() = CheckboxValueDelegate(id)
 
-///**
-// * Binds the property to [ProgressBar.getProgress] and
-// * [ProgressBar.setProgress]
-// */
-//val ViewDelegate<ProgressBar>.value
-//    get() = ProgressBarDelegate(id)
+/**
+ * Binds the property to [ProgressBar.getProgress] and
+ * [ProgressBar.setProgress]
+ */
+val ViewDelegate<out ProgressBar>.value
+    get() = ProgressBarDelegate(id)
 
 /**
- * Binds the property to [ContentLoadingProgressBar.getProgress] and
- * [ContentLoadingProgressBar.setProgress]
+ * Binds the property to [android.widget.RatingBar.getNumStars] and
+ * [android.widget.RatingBar.getNumStars]
  */
-val ViewDelegate<ContentLoadingProgressBar>.value
-    get() = ContentLoadingProgressBarDelegate(id)
-
-/**
- * Binds the property to [SeekBar.getProgress] and
- * [SeekBar.setProgress]
- */
-val ViewDelegate<SeekBar>.value
-    get() = SeekBarDelegate(id)
-
-/**
- * Binds the property to [RatingBar.getNumStars] and
- * [RatingBar.setNumStars]
- */
-val ViewDelegate<RatingBar>.value
+val ViewDelegate<RatingBar>.numStars
     get() = RatingBarDelegate(id)
