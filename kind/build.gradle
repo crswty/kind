@@ -82,6 +82,14 @@ uploadArchives {
                     url 'https://github.com/crswty/kind.git'
                 }
 
+                developers {
+                    developer {
+                        id 'crswty'
+                        name 'Chris Whitty'
+                        email 'chris.whitty@gmail.com'
+                    }
+                }
+
                 licenses {
                     license {
                         name 'MIT License'
