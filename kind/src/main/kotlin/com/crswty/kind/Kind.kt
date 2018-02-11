@@ -1,8 +1,10 @@
 package com.crswty.kind
 
-import android.support.v4.widget.ContentLoadingProgressBar
 import android.view.View
-import android.widget.*
+import android.widget.CheckBox
+import android.widget.ProgressBar
+import android.widget.RatingBar
+import android.widget.TextView
 import com.crswty.kind.delegates.*
 
 /**

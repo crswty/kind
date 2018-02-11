@@ -15,9 +15,5 @@ class CheckboxValueDelegate(id: Int): ReadWritePropertyAndroidDelegate<CheckBox,
         view.isChecked = value
     }
 
-    val observable = ObservableDelegate<CheckBox, Boolean>(id) { view, emitter ->
-        view.setOnCheckedChangeListener { _, newValue: Boolean ->
-            emitter.onNext(newValue)
-        }
-    }
+
 }

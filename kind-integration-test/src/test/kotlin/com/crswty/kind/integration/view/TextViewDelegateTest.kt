@@ -4,6 +4,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.crswty.kind.bind
+import com.crswty.kind.delegates.observable
 import com.crswty.kind.integration.util.TestActivity
 import com.crswty.kind.value
 import org.hamcrest.Matchers.equalTo

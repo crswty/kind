@@ -2,6 +2,7 @@ package com.crswty.kind.integration.view
 
 import android.widget.CheckBox
 import com.crswty.kind.bind
+import com.crswty.kind.delegates.observable
 import com.crswty.kind.integration.util.TestActivity
 import com.crswty.kind.value
 import org.hamcrest.Matchers.equalTo

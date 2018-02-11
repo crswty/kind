@@ -2,6 +2,7 @@ package com.crswty.kind.integration
 
 import android.view.View
 import com.crswty.kind.bind
+import com.crswty.kind.delegates.clickObservable
 import com.crswty.kind.integration.util.TestActivity
 import org.hamcrest.Matchers.equalTo
 import org.hamcrest.Matchers.hasSize
