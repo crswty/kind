@@ -8,9 +8,9 @@ class ViewDelegate<V : View>(id: Int): ReadPropertyAndroidDelegate<V, V>(id) {
     override fun getFromView(view: V, prop: KProperty<*>) = view
 
     val clickObservable = ObservableDelegate<V, V>(id) { view, emitter ->
-        view.setOnClickListener { view ->
+        view.setOnClickListener { clickedView ->
             @Suppress("UNCHECKED_CAST")
-            emitter.onNext(view as V)
+            emitter.onNext(clickedView as V)
         }
     }
 
